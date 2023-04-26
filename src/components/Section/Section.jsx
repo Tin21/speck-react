@@ -11,8 +11,9 @@ const Section = ({title, subtitle, children}) => {
           <p className="section__subtitle">
             {subtitle}
           </p>
+          {children}
         </div>
-        {children}
+        
     </section>
   )
 }
@@ -23,4 +24,4 @@ Section.PropTypes = {
     children: PropTypes.node
 }
 
-export default Section
+export default Section;
