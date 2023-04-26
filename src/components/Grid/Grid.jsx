@@ -4,7 +4,7 @@ import "./Grid.scss";
 
 const Grid = ({children}) => {
   return (
-    <div className="grid">{children}</div>
+    <div className="Grid">{children}</div>
   )
 }
 
