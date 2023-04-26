@@ -1,11 +1,12 @@
 import "./Header.scss"
 import "../Button/Button.scss"
+import {Link} from "react-router-dom"
 
 const Header = () => {
     return (
         <header className="Header">
       <div className="Header-Inner">
-        <a href="index.html" className="Header-LogoLink">
+        <Link to="/" className="Header-LogoLink">
           <svg
             className="Header-Logo"
             width="120"
@@ -19,7 +20,7 @@ const Header = () => {
               fill="white"
             />
           </svg>
-        </a>
+        </Link>
         <svg
           className="Header-Hamburger"
           width="448"
@@ -35,8 +36,8 @@ const Header = () => {
         </svg>
 
         <nav className="Header-Nav">
-          <a href="index.html" className="Header-Link">Home</a>
-          <a href="courses.html" className="Header-Link">Courses</a>
+          <Link to="/" className="Header-Link">Home</Link>
+          <Link to="courses" className="Header-Link">Courses</Link>
           <a href="#" className="Button">Register</a>
         </nav>
       </div>

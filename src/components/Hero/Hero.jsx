@@ -1,6 +1,7 @@
 import "./Hero.scss";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const Hero = ({imgSrc, imgAlt, title, subtitle, buttonText}) => {
     return (
@@ -20,9 +21,11 @@ const Hero = ({imgSrc, imgAlt, title, subtitle, buttonText}) => {
               <p className="Hero-Subtitle">
                 {subtitle}
               </p>
-              <Button>
-                {buttonText}
-              </Button>
+              <Link to="/courses">
+                <Button>
+                  {buttonText}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
