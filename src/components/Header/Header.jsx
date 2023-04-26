@@ -1,12 +1,13 @@
 import "./Header.scss"
+import "../Button/Button.scss"
 
 const Header = () => {
     return (
-        <header className="header">
-      <div className="header__inner">
-        <a href="index.html" className="header__logo-link">
+        <header className="Header">
+      <div className="Header-Inner">
+        <a href="index.html" className="Header-LogoLink">
           <svg
-            className="header__logo"
+            className="Header-Logo"
             width="120"
             height="24"
             viewBox="0 0 120 24"
@@ -20,7 +21,7 @@ const Header = () => {
           </svg>
         </a>
         <svg
-          className="header__hamburger"
+          className="Header-Hamburger"
           width="448"
           height="392"
           viewBox="0 0 448 392"
@@ -33,10 +34,10 @@ const Header = () => {
           />
         </svg>
 
-        <nav className="header__nav">
-          <a href="index.html" className="header__link">Home</a>
-          <a href="courses.html" className="header__link">Courses</a>
-          <a href="#" className="button">Register</a>
+        <nav className="Header-Nav">
+          <a href="index.html" className="Header-Link">Home</a>
+          <a href="courses.html" className="Header-Link">Courses</a>
+          <a href="#" className="Button">Register</a>
         </nav>
       </div>
     </header>
