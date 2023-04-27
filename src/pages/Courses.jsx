@@ -12,6 +12,7 @@ import LectureImg7 from "../assets/images/lecture-7.jpg";
 import LectureImg8 from "../assets/images/lecture-8.jpg";
 import "../components/Grid/grid";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom"
 
 const Courses = () => {
   return (
@@ -21,21 +22,44 @@ const Courses = () => {
             the courses page." >
 
             <Grid>
-              <Course imgSrc={LectureImg1} imgAlt="Course image" title="HTML & CSS" subtitle="Learn HTML & CSS basics.." time="90 min"/>
-              <Course imgSrc={LectureImg2} imgAlt="Course image" title="Version Control System" subtitle="Learn Git and Gitflow basics.." time="90 min"/>
-              <Course imgSrc={LectureImg3} imgAlt="Course image" title="Advanced CSS" subtitle="BEM methodology, grid, flex.." time="120 min"/>
-              <Course imgSrc={LectureImg4} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
-              <Course imgSrc={LectureImg5} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
-              <Course imgSrc={LectureImg6} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
-              <Course imgSrc={LectureImg7} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
-              <Course imgSrc={LectureImg8} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
+              <Link to="/course">
+                <Course imgSrc={LectureImg1} imgAlt="Course image" title="HTML & CSS" subtitle="Learn HTML & CSS basics.." time="90 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg2} imgAlt="Course image" title="Version Control System" subtitle="Learn Git and Gitflow basics.." time="90 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg3} imgAlt="Course image" title="Advanced CSS" subtitle="BEM methodology, grid, flex.." time="120 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg4} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg5} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg6} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg7} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
+              </Link>
+              
+              <Link to="/course">
+                <Course imgSrc={LectureImg8} imgAlt="Course image" title="JavaScript basics" subtitle="Learn JavaScript basics" time="130 min"/>
+              </Link>
             </Grid>
       </Section>
     </>
   )
 }
 
-Section.PropTypes = {
+Courses.PropTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   children: PropTypes.node
