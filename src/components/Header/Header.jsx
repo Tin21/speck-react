@@ -1,6 +1,7 @@
 import "./Header.scss"
 import "../Button/Button.scss"
 import {Link} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -36,8 +37,13 @@ const Header = () => {
         </svg>
 
         <nav className="Header-Nav">
-          <Link to="/" className="Header-Link">Home</Link>
-          <Link to="courses" className="Header-Link">Courses</Link>
+          <NavLink to="/"  className={({ isActive, isPending }) =>
+            isPending ? "pending Header-Link" : isActive ? "active Header-Link" : "Header-Link"
+          }>Home</NavLink>
+
+          <NavLink to="courses"className={({ isActive, isPending }) =>
+            isPending ? "pending Header-Link" : isActive ? "active Header-Link" : "Header-Link"
+          }>Courses</NavLink>
           <a href="#" className="Button">Register</a>
         </nav>
       </div>
