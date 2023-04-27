@@ -1,3 +1,5 @@
+@import "../../theme.scss";
+
 .Hero {
     height: 570px;
     position: relative;
@@ -39,7 +41,7 @@
   }
   
   &-Title {
-    color: var(--color-secondary);
+    color: $colorSecondary;
     font-weight: 600;
     font-size: 28px;
     line-height: 130%;
@@ -49,7 +51,7 @@
   }
   
   &-Subtitle {
-    color: var(--color-secondary);
+    color: $colorSecondary;
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.4px;
@@ -57,7 +59,7 @@
     margin-bottom: 32px;
   }
   
-  @media screen and (min-width: 768px) {
+  @media screen and ($tabletLarge) {
     /*  &-text-card {
       padding: 0 32px;
     } */
@@ -67,7 +69,7 @@
     }
   }
   
-  @media screen and (min-width: 1024px) {
+  @media screen and ($desktop) {
     &-TextCard {
       padding: 0;
     }
@@ -83,7 +85,7 @@
     }
   }
   
-  @media screen and (min-width: 1300px) {
+  @media screen and ($desktopLarge) {
     &-ContentInner {
       max-width: 1280px;
     }
