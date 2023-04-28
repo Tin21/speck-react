@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors} from "./theme";
+import { breakpoints, colors} from "./theme";
 
 export const Button = styled.button`
     padding: 12px 20px;
@@ -16,6 +16,24 @@ export const Button = styled.button`
   
   &:Hover {
     background-color: ${colors.primaryDark};
+  }
+`
+
+export const Grid = styled.div`
+    display: grid;
+    gap: 32px;
+
+    @media screen and (${breakpoints.tabletSmall}) {
+    
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+    @media screen and (${breakpoints.tabletLarge}) {
+        grid-template-columns: repeat(3, 1fr);
+  }
+
+    @media screen and (${breakpoints.desktopLarge}) {
+        grid-template-columns: repeat(4, 1fr);
   }
 `
 

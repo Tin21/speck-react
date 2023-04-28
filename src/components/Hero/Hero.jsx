@@ -1,37 +1,28 @@
 import "./Hero.scss";
 import PropTypes from "prop-types";
-import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { Button } from "../../utils/styles/generalStyles";
 
-const Hero = ({imgSrc, imgAlt, title, subtitle, buttonText}) => {
-    return (
-        <section className="Hero">
-        <figure className="Hero-Figure">
-          <img
-            className="Hero-Image"
-            src={imgSrc}
-            alt={imgAlt}
-          />
-        </figure>
-        <div className="Hero-Overlay"></div>
-        <div className="Hero-Content">
-          <div className="Hero-ContentInner">
-            <div className="Hero-TextCard">
-              <h1 className="Hero-Title">{title}</h1>
-              <p className="Hero-Subtitle">
-                {subtitle}
-              </p>
-              <Link to="/courses">
-                <Button>
-                  {buttonText}
-                </Button>
-              </Link>
-            </div>
+const Hero = ({ imgSrc, imgAlt, title, subtitle, buttonText }) => {
+  return (
+    <section className="Hero">
+      <figure className="Hero-Figure">
+        <img className="Hero-Image" src={imgSrc} alt={imgAlt} />
+      </figure>
+      <div className="Hero-Overlay"></div>
+      <div className="Hero-Content">
+        <div className="Hero-ContentInner">
+          <div className="Hero-TextCard">
+            <h1 className="Hero-Title">{title}</h1>
+            <p className="Hero-Subtitle">{subtitle}</p>
+            <Link to="/courses">
+              <Button>{buttonText}</Button>
+            </Link>
           </div>
         </div>
-      </section>
-    );
-
+      </div>
+    </section>
+  );
 };
 
 Hero.PropTypes = {
@@ -40,6 +31,6 @@ Hero.PropTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   buttonText: PropTypes.string,
-}
+};
 
 export default Hero;

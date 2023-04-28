@@ -1,5 +1,3 @@
-import "./Header.scss";
-import "../Button/Button.scss";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import {
@@ -11,8 +9,11 @@ import {
   HeaderNav,
 } from "./HeaderStyle";
 import { Button } from "../../utils/styles/generalStyles";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <HeaderWrapper>
       <HeaderInner>
@@ -23,9 +24,7 @@ const Header = () => {
         <HeaderNav>
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
-          <Link to={"/register"}>
-            <Button>Register</Button>
-          </Link>
+          <Button onClick={() => navigate("/register")}>Register</Button>
         </HeaderNav>
       </HeaderInner>
     </HeaderWrapper>
