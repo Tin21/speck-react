@@ -2,10 +2,25 @@ import "./Header.scss"
 import "../Button/Button.scss"
 import {Link} from "react-router-dom"
 import { NavLink } from "react-router-dom";
+import { Header as HeaderWrapper, HeaderInner, Hamburger, LogoImg, HeaderLink, HeaderNav } from "./HeaderStyle";
+import Button from "../../utils/styles/generalStyles";
 
 const Header = () => {
     return (
-        <header className="Header">
+      /* <HeaderWrapper>
+      <HeaderInner>
+        <Link to="/">
+          <LogoImg />
+        </Link>
+        <Hamburger/>
+        <HeaderNav>
+          <HeaderLink to={"/"}>Home</HeaderLink>
+          <HeaderLink to={"/courses"}>Courses</HeaderLink>
+          <Link to={"/register"}><Button>Register</Button></Link>
+        </HeaderNav>
+      </HeaderInner>
+    </HeaderWrapper> */
+         <header className="Header">
       <div className="Header-Inner">
         <Link to="/" className="Header-LogoLink">
           <svg
@@ -37,17 +52,17 @@ const Header = () => {
         </svg>
 
         <nav className="Header-Nav">
-          <NavLink to="/"  className={({ isActive, isPending }) =>
+          <NavLink to="/" className={({ isActive, isPending }) =>
             isPending ? "pending Header-Link" : isActive ? "active Header-Link" : "Header-Link"
           }>Home</NavLink>
 
-          <NavLink to="courses"className={({ isActive, isPending }) =>
+          <NavLink to="courses" className={({ isActive, isPending }) =>
             isPending ? "pending Header-Link" : isActive ? "active Header-Link" : "Header-Link"
           }>Courses</NavLink>
           <a href="#" className="Button">Register</a>
         </nav>
       </div>
-    </header>
+    </header> 
     )
 }
 

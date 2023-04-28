@@ -57,8 +57,12 @@
     &-Link:Hover {
       color: $colorPrimary;
     }
+    
+    &-Link.active{
+      color: $colorPrimary;
+      font-weight: 700;
+    }
   }
+
   
-.active{
-  color: $colorPrimary;
-}
+
