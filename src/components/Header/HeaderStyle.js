@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, breakpoints } from "../../utils/styles/theme";
+import { colors, breakpoints, fonts } from "../../utils/styles/theme";
 import { ReactComponent as HamburgerIcon } from "../../assets/images/icon-hamburger.svg"
 import { ReactComponent as Logo } from "../../assets/images/logo.svg"
 import { NavLink } from "react-router-dom";
@@ -69,4 +69,56 @@ export const HeaderNav = styled.nav`
       display: flex;
       align-items: center;
 }
+`;
+
+export const HamburgerMenuInner = styled.div`
+    height: 304px;
+    width: 200px;
+    position: absolute;
+    font-weight: 700;
+    z-index: 1;
+    background-color: rgba(240,240,240,1);
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+
+    @media screen and (${breakpoints.tabletLarge}) {
+      height: 340px;
+      width: 240px;
+      font-weight: 800;
+    }
+
+    @media screen and (${breakpoints.desktop}) {
+      display: none;
+    }
+`
+
+export const HamburgerMenuItem = styled.div`
+    font-family: ${fonts.primary};
+    padding: 28px;
+    font-size: 16px;
+    transition: color 0.3s ease-out;
+
+    @media screen and (${breakpoints.tabletLarge}) {
+      padding: 32px;
+      font-size: 18px;
+    }
+
+    &:Hover {
+      color: ${colors.primary};
+    }
+
+    &.active{
+      color: ${colors.primary};
+      }
+`
+
+export const HamburgerNavLink = styled (NavLink)`
+    &.active{
+      color: ${colors.primary};
+      font-weight: 700;
+    }
 `;

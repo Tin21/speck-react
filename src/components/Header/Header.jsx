@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import {
   Header as HeaderWrapper,
@@ -8,15 +6,12 @@ import {
   LogoImg,
   HeaderLink,
   HeaderNav,
+  HamburgerMenuInner,
+  HamburgerMenuItem,
+  HamburgerNavLink,
 } from "./HeaderStyle";
 import { Button } from "../../utils/styles/generalStyles";
 import { useNavigate } from "react-router-dom";
-import {
-  HamburgerMenu,
-  HamburgerHeaderInner,
-  HamburgerMenuInner,
-  HamburgerMenuItem,
-} from "../HamburgerMenu/HamburgerMenuStyle";
 import { useState } from "react";
 
 const Header = () => {
@@ -28,55 +23,55 @@ const Header = () => {
     setActive(!active);
   };
 
-  /* const vratiBok = (state) => {
-    if (state === true) return <HamburgerMenu />;
-  }; */
-
   return (
     <HeaderWrapper>
       <HeaderInner>
-        <Link to="/">
+        <NavLink to="/">
           <LogoImg />
-        </Link>
+        </NavLink>
         <Hamburger onClick={() => changeState()} />
         {active && (
           <>
-            <HamburgerMenu />
             <HamburgerMenuInner>
-              <HamburgerMenuItem
-                onClick={() => {
-                  navigate("/");
-                  changeState();
-                }}
-              >
-                Home
-              </HamburgerMenuItem>
-              <HamburgerMenuItem
-                onClick={() => {
-                  navigate("/courses");
-                  changeState();
-                }}
-              >
-                Courses
-              </HamburgerMenuItem>
+              <HamburgerNavLink to="/">
+                <HamburgerMenuItem
+                  onClick={() => {
+                    changeState();
+                  }}
+                >
+                  Home
+                </HamburgerMenuItem>
+              </HamburgerNavLink>
 
-              <HamburgerMenuItem
-                onClick={() => {
-                  navigate("/signin");
-                  changeState();
-                }}
-              >
-                Sign In
-              </HamburgerMenuItem>
+              <HamburgerNavLink to="/courses">
+                <HamburgerMenuItem
+                  onClick={() => {
+                    changeState();
+                  }}
+                >
+                  Courses
+                </HamburgerMenuItem>
+              </HamburgerNavLink>
 
-              <HamburgerMenuItem
-                onClick={() => {
-                  navigate("/register");
-                  changeState();
-                }}
-              >
-                Register
-              </HamburgerMenuItem>
+              <HamburgerNavLink to="/signin">
+                <HamburgerMenuItem
+                  onClick={() => {
+                    changeState();
+                  }}
+                >
+                  Sign In
+                </HamburgerMenuItem>
+              </HamburgerNavLink>
+
+              <HamburgerNavLink to="/register">
+                <HamburgerMenuItem
+                  onClick={() => {
+                    changeState();
+                  }}
+                >
+                  Register
+                </HamburgerMenuItem>
+              </HamburgerNavLink>
             </HamburgerMenuInner>
           </>
         )}
