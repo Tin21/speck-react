@@ -1,45 +1,50 @@
-.Course {
+import styled from "styled-components";
+import { colors, breakpoints } from "../../utils/styles/theme";
+
+export const Course = styled.article`
     width: 100%;
     border-radius: 6px;
     padding: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  
-  
-  &:Hover {
+
+    &:Hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  }
-  
-  &-Figure {
+    }
+`
+
+export const CourseFigure = styled.figure`
     width: 100%;
     height: 180px;
     border-radius: 6px;
     overflow: hidden;
     margin-bottom: 24px;
-  }
+`
 
-  &-Image {
+export const CourseImage = styled.img`
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
+`
 
-  &-Title {
+export const CourseTitle = styled.h3`
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 16px;
-  }
+`
 
-  &-Subtitle {
-    color: var(--color-text-secondary);
+export const CourseSubtitle = styled.p`
+    color: ${colors.textSecondary};
     font-size: 16px;
     line-height: 150%;
     margin-bottom: 16px;
-  }
+`
 
-  &-Time {
+export const CourseTime = styled.p`
     font-size: 14px;
     font-weight: 700;
-    color: var(--color-primary);
-  }
-}
+    color: ${colors.primary};
+`
+
+
+
