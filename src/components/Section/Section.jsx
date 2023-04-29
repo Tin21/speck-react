@@ -1,27 +1,28 @@
-import React from 'react'
+import React from "react";
 import PropTypes from "prop-types";
-import "./Section.scss";
+import {
+  Section as SectionWrapper,
+  SectionInner,
+  SectionTitle,
+  SectionSubtitle,
+} from "./SectionStyle";
 
-
-const Section = ({title, subtitle, children}) => {
+const Section = ({ title, subtitle, children }) => {
   return (
-    <section className="Section">
-        <div className="Section-Inner">
-          <h2 className="Section-Title">{title}</h2>
-          <p className="Section-Subtitle">
-            {subtitle}
-          </p>
-          {children}
-        </div>
-        
-    </section>
-  )
-}
+    <SectionWrapper>
+      <SectionInner>
+        <SectionTitle>{title}</SectionTitle>
+        <SectionSubtitle>{subtitle}</SectionSubtitle>
+        {children}
+      </SectionInner>
+    </SectionWrapper>
+  );
+};
 
 Section.PropTypes = {
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    children: PropTypes.node
-}
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default Section;
