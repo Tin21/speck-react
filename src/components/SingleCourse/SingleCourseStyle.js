@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors, breakpoints } from "../../utils/styles/theme";
-import "../Section/SectionStyle"
 
 export const SingleCourse = styled.article`
     @media screen and (${breakpoints.tabletLarge}) {

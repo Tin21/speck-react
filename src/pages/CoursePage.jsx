@@ -7,17 +7,19 @@ import { useParams } from "react-router-dom";
 import coursesMock from "../utils/mock/courses";
 
 const CoursePage = () => {
-  const { id } = useParams();
+  const { id } = useParams(); //čita se sa url-a
 
   const [courses, setCourses] = useState(null);
   const [course, setCourse] = useState(null);
 
+  //triggera se u trenutku kad se renderira komponenta (odmah)
   useEffect(() => {
     setTimeout(() => {
       setCourses(coursesMock);
     }, 1000);
   }, []);
 
+  //triggerira se nakon što se courses učitaju (1000ms)
   useEffect(() => {
     courses && setCourse(courses.find((course) => course.id === parseInt(id)));
   }, [courses]);
