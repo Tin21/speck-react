@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Grid } from "../utils/styles/generalStyles";
 import { useEffect, useState } from "react";
 import coursesMock from "../utils/mock/courses";
+import SpinnerComponent from "../components/Spinner/SpinnerComponent";
 
 const Home = () => {
   const [courses, setCourses] = useState(null);
@@ -33,7 +34,9 @@ const Home = () => {
             don't find anything for you here, search for courses in detail on
             the courses page."
       >
-        {courses && ( // ako courses postoji ucitaj Grid
+        {courses === null ? ( //dok je courses null prikaži spinner, inače grid
+          <SpinnerComponent />
+        ) : (
           <Grid>
             {courses.map(
               (course, index) =>

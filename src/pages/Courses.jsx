@@ -6,13 +6,18 @@ import { Grid } from "../utils/styles/generalStyles";
 import { useEffect, useState } from "react";
 import coursesMock from "../utils/mock/courses";
 import SearchBar from "../components/SearchBar/SearchBar";
+import SpinnerComponent from "../components/Spinner/SpinnerComponent";
 
 const Courses = () => {
   const [courses, setCourses] = useState(null);
+  const enableInput = () => {
+    document.getElementById("value").disabled = false;
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setCourses(coursesMock);
+      enableInput();
     }, 1000);
   }, []);
 
@@ -27,41 +32,38 @@ const Courses = () => {
         )
       );
     else if (inputValue === "") setCourses(coursesMock);
-
-    return console.log(`${inputValue}`);
   };
 
   return (
     <>
-      <SearchBar
-        placeholder="Browse courses"
-        disabled="false"
-        onChangeCall={handleSearch}
-      />
-
+      <SearchBar placeholder="Browse courses" onChangeCall={handleSearch} />
       <Section
         title="Browse all our courses"
         subtitle="We recommend that you choose one of the featured courses. If you
             don't find anything for you here, search for courses in detail on
             the courses page."
       >
-        {courses && ( // ako courses postoji ucitaj Grid
-          <Grid>
-            {courses.map(
-              (course, index) =>
-                index < 8 && (
-                  <Course
-                    key={course.id}
-                    imgSrc={course.imgSrc}
-                    imgAlt={course.imgAlt}
-                    title={course.title}
-                    subtitle={course.subtitle}
-                    time={course.time}
-                    id={course.id}
-                  />
-                )
-            )}
-          </Grid>
+        {courses === null ? ( //dok je courses null prikaži spinner, inače grid
+          <SpinnerComponent />
+        ) : (
+          <>
+            <Grid>
+              {courses.map(
+                (course, index) =>
+                  index < 8 && (
+                    <Course
+                      key={course.id}
+                      imgSrc={course.imgSrc}
+                      imgAlt={course.imgAlt}
+                      title={course.title}
+                      subtitle={course.subtitle}
+                      time={course.time}
+                      id={course.id}
+                    />
+                  )
+              )}
+            </Grid>
+          </>
         )}
       </Section>
     </>

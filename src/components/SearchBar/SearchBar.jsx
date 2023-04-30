@@ -10,8 +10,8 @@ const SearchBar = (props) => {
     <SearchBarWrapper>
       <SearchBarLogo />
       <SearchBarInput
-        type="text"
         id="value"
+        disabled
         onChange={() => props.onChangeCall("value")}
       ></SearchBarInput>
     </SearchBarWrapper>
