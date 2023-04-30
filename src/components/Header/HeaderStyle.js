@@ -76,7 +76,7 @@ export const HamburgerMenuInner = styled.div`
     width: 200px;
     position: absolute;
     font-weight: 700;
-    z-index: 1;
+    z-index: 10;
     background-color: rgba(240,240,240,1);
     right: 0;
     top: 0;

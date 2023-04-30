@@ -46,7 +46,7 @@ export const SectionSubtitle = styled.p`
     max-width: 700px;
     margin: 0 auto;
     text-align: center;
-    color: $colorTextSecondary;
+    color: (${colors.textSecondary});
     font-size: 16px;
     margin-bottom: 48px;
 `

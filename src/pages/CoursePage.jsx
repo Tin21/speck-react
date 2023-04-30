@@ -22,7 +22,7 @@ const CoursePage = () => {
   //triggerira se nakon što se courses učitaju (1000ms)
   useEffect(() => {
     courses && setCourse(courses.find((course) => course.id === parseInt(id)));
-  }, [courses]);
+  }, [courses !== null]);
 
   return (
     course && (
@@ -38,7 +38,7 @@ const CoursePage = () => {
   );
 };
 
-CoursePage.PropTypes = {
+CoursePage.propTypes = {
   imgSrc: PropTypes.string,
   imgAlt: PropTypes.string,
   title: PropTypes.string,

@@ -1,19 +1,11 @@
 import React from "react";
 import Course from "../components/Course/Course";
 import Section from "../components/Section/Section";
-import LectureImg1 from "../assets/images/lecture-1.jpg";
-import LectureImg2 from "../assets/images/lecture-2.jpg";
-import LectureImg3 from "../assets/images/lecture-3.jpg";
-import LectureImg4 from "../assets/images/lecture-4.jpg";
-import LectureImg5 from "../assets/images/lecture-5.jpg";
-import LectureImg6 from "../assets/images/lecture-6.jpg";
-import LectureImg7 from "../assets/images/lecture-7.jpg";
-import LectureImg8 from "../assets/images/lecture-8.jpg";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { Grid } from "../utils/styles/generalStyles";
 import { useEffect, useState } from "react";
 import coursesMock from "../utils/mock/courses";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const Courses = () => {
   const [courses, setCourses] = useState(null);
@@ -24,8 +16,29 @@ const Courses = () => {
     }, 1000);
   }, []);
 
+  const handleSearch = (id) => {
+    let inputValue = "";
+    inputValue = document.getElementById(`${id}`).value;
+
+    if (inputValue !== "")
+      setCourses(
+        coursesMock.filter((coursesMock) =>
+          coursesMock.title.toLowerCase().includes(inputValue.toLowerCase())
+        )
+      );
+    else if (inputValue === "") setCourses(coursesMock);
+
+    return console.log(`${inputValue}`);
+  };
+
   return (
     <>
+      <SearchBar
+        placeholder="Browse courses"
+        disabled="false"
+        onChangeCall={handleSearch}
+      />
+
       <Section
         title="Browse all our courses"
         subtitle="We recommend that you choose one of the featured courses. If you
@@ -55,7 +68,7 @@ const Courses = () => {
   );
 };
 
-Courses.PropTypes = {
+Courses.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   children: PropTypes.node,
