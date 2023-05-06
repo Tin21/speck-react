@@ -53,7 +53,7 @@ const Header = () => {
                 </HamburgerMenuItem>
               </HamburgerNavLink>
 
-              <HamburgerNavLink to="/signin">
+              <HamburgerNavLink to="/sign-in">
                 <HamburgerMenuItem
                   onClick={() => {
                     changeState();
@@ -79,6 +79,9 @@ const Header = () => {
         <HeaderNav>
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
+          <Button isOutline onClick={() => navigate("/sign-in")}>
+            Sign In
+          </Button>
           <Button onClick={() => navigate("/register")}>Register</Button>
         </HeaderNav>
       </HeaderInner>

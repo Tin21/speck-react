@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import CoursePage from "./pages/CoursePage";
+import SignIn from "./pages/SignIn/SingIn";
+import Register from "./pages/Register/Register";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CoursePage />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
     </>
