@@ -40,6 +40,17 @@ export const SectionTitle = styled.h2`
     @media screen and (${breakpoints.desktop}) {
         font-size: 36px;
     }
+
+    ${props => props.secondaryTitle && `
+        margin-left: 0px;
+    `}
+
+`
+
+export const SectionTitleInner = styled.div`
+        max-width: 1280px;
+        display: flex;
+        justify-content: space-between;
 `
 
 export const SectionSubtitle = styled.p`
@@ -49,6 +60,10 @@ export const SectionSubtitle = styled.p`
     color: (${colors.textSecondary});
     font-size: 16px;
     margin-bottom: 48px;
+
+    ${props => props.secondarySubtitle && `
+        text-align: left;
+    `}
 `
 
 

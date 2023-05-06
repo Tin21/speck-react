@@ -22,11 +22,23 @@ export const Button = styled.button`
         color: ${colors.primary};
         margin-right: 32px;
     `}
+
+    ${props => props.isEdit && `
+        background-color: ${colors.secondary};
+        border: 1px solid ${colors.primary};
+        color: ${colors.primary};
+        height: 40px;
+        
+    `}
   
   &:Hover {
     background-color: ${colors.primaryDark};
 
     ${props => props.isOutline && `
+        color: ${colors.secondary};
+    `}
+
+    ${props => props.isEdit && `
         color: ${colors.secondary};
     `}
   }
@@ -48,6 +60,13 @@ export const Grid = styled.div`
     @media screen and (${breakpoints.desktopLarge}) {
         grid-template-columns: repeat(4, 1fr);
   }
+
+  ${props => props.isProfilePage && `
+        @media screen and (${breakpoints.desktop}) {
+    
+    grid-template-columns: repeat(3, 1fr);
+  }
+    `}
 `
 
 export const Form = styled(FormFormik)`

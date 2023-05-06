@@ -79,6 +79,7 @@ const Header = () => {
         <HeaderNav>
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
+          <HeaderLink to={"/profile"}>Profile</HeaderLink>
           <Button isOutline onClick={() => navigate("/sign-in")}>
             Sign In
           </Button>
