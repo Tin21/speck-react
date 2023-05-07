@@ -164,6 +164,23 @@ const Profile = () => {
                 zeplinUsername: `${data.zeplinUsername}`,
                 activeFacultyYear: `${data.activeFacultyYear}`,
               }}
+              validationSchema={Yup.object({
+                firstName: Yup.string().required("First name is required"),
+                lastName: Yup.string().required("Last name is required"),
+                email: Yup.string()
+                  .email("Invalid email address")
+                  .required("Email is required"),
+                githubUsername: Yup.string().required(
+                  "GitHub username is required"
+                ),
+                zeplinUsername: Yup.string().required(
+                  "Zeplin username is required"
+                ),
+                activeFacultyYear: Yup.string().required(
+                  "Faculty year is required"
+                ),
+                isAdmin: false,
+              })}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setTimeout(() => {
                   const newData = {
@@ -287,8 +304,30 @@ const Profile = () => {
                   initialValues={{
                     oldPassword: "",
                     newPassword: "",
-                    repeatPassword: "",
+                    passwordRepeat: "",
                   }}
+                  validationSchema={Yup.object({
+                    oldPassword: Yup.string()
+                      .min(8, "Old password must be at least 8 characters long")
+                      .required("Old password is required"),
+                    newPassword: Yup.string()
+                      .min(8, "New password must be at least 8 characters long")
+                      .required("New password is required")
+                      .test(
+                        "passwords-dont-match",
+                        "New password can't match the old password",
+                        function (value) {
+                          return this.parent.oldPassword !== value;
+                        }
+                      ),
+                    passwordRepeat: Yup.string().test(
+                      "passwords-match",
+                      "Passwords must match",
+                      function (value) {
+                        return this.parent.newPassword === value;
+                      }
+                    ),
+                  })}
                 >
                   {(formik) => (
                     <Form isProfileForm>
