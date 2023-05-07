@@ -328,6 +328,18 @@ const Profile = () => {
                       }
                     ),
                   })}
+                  onSubmit={(values, { setSubmitting, resetForm }) => {
+                    setTimeout(() => {
+                      const passwordData = {
+                        old_password: values.oldPassword,
+                        new_password: values.newPassword,
+                      };
+                      alert(JSON.stringify(passwordData, null, 2));
+                      changeState();
+                      setSubmitting(false);
+                      resetForm();
+                    }, 1000);
+                  }}
                 >
                   {(formik) => (
                     <Form isProfileForm>
