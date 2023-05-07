@@ -271,12 +271,73 @@ const Profile = () => {
                 </Form>
               )}
             </Formik>
-            <ResetPassBackground>
-              <ResetPassTitle>Reset password</ResetPassTitle>
-              <ResetPassSubtitle>
-                In order to reset the password click on Edit button.
-              </ResetPassSubtitle>
-            </ResetPassBackground>
+
+            {!editing && (
+              <ResetPassBackground>
+                <ResetPassTitle>Reset password</ResetPassTitle>
+                <ResetPassSubtitle>
+                  In order to reset the password click on Edit button.
+                </ResetPassSubtitle>
+              </ResetPassBackground>
+            )}
+            {editing && (
+              <ResetPassBackground>
+                <ResetPassTitle>Reset password</ResetPassTitle>
+                <Formik
+                  initialValues={{
+                    oldPassword: "",
+                    newPassword: "",
+                    repeatPassword: "",
+                  }}
+                >
+                  {(formik) => (
+                    <Form isProfileForm>
+                      <FormRow>
+                        <Field
+                          type="password"
+                          name="oldPassword"
+                          placeholder="Old password..."
+                          disabled={formik.isSubmitting}
+                        />
+                        <ErrorMessage component={"div"} name="oldPassword" />
+                      </FormRow>
+
+                      <FormRow>
+                        <Field
+                          type="password"
+                          name="newPassword"
+                          placeholder="New password..."
+                          disabled={formik.isSubmitting}
+                        />
+                        <ErrorMessage component={"div"} name="newPassword" />
+                      </FormRow>
+
+                      <FormRow>
+                        <Field
+                          type="password"
+                          name="passwordRepeat"
+                          placeholder="Repeat new password"
+                          disabled={formik.isSubmitting}
+                        />
+                        <ErrorMessage component={"div"} name="passwordRepeat" />
+                      </FormRow>
+
+                      <FormRow>
+                        <Button
+                          isSecondary
+                          type="submit"
+                          disabled={formik.isSubmitting}
+                        >
+                          {formik.isSubmitting
+                            ? "Processing..."
+                            : "Update password"}
+                        </Button>
+                      </FormRow>
+                    </Form>
+                  )}
+                </Formik>
+              </ResetPassBackground>
+            )}
           </Grid>
         )}
       </SectionInner>
