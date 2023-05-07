@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 import { breakpoints, colors, fonts} from "./theme";
-import { Form as FormFormik, Field as FieldFormik, ErrorMessage as ErrorMessageFormik} from "formik";
+import { Form as FormFormik, Field as FieldFormik, ErrorMessage as ErrorMessageFormik } from "formik";
 
 export const Button = styled.button`
     padding: 12px 20px;
@@ -12,8 +12,12 @@ export const Button = styled.button`
     outline: none;
   
     ${props => props.isSecondary && `
-        padding: 16px 20px;
+        padding: 13px 20px;
+        height: 40px;
         
+        @media screen and (${breakpoints.desktop}) {
+          height: 44px;
+        }
     `}
 
     ${props => props.isOutline && `
@@ -28,7 +32,10 @@ export const Button = styled.button`
         border: 1px solid ${colors.primary};
         color: ${colors.primary};
         height: 40px;
-        
+
+        @media screen and (${breakpoints.desktop}) {
+          height: 44px;
+        }
     `}
   
   &:Hover {
@@ -62,10 +69,11 @@ export const Grid = styled.div`
   }
 
   ${props => props.isProfilePage && `
-        @media screen and (${breakpoints.desktop}) {
+     @media screen and (${breakpoints.desktop}) {
     
-    grid-template-columns: repeat(3, 1fr);
-  }
+        grid-template-columns: repeat(3, 1fr);
+
+    }
     `}
 `
 
@@ -75,17 +83,22 @@ export const Form = styled(FormFormik)`
         max-width: 400px;
         margin: 0 auto;
     }
+
+    ${props => props.isProfileForm && `
+      width:100%;
+    `}
 `
 
 export const FormRow = styled.div`
     margin-bottom: 32px;
+
     &:last-child{
       margin-bottom: 0;
     }
 `
 
 const FieldStyle = css`
-   border: 1px solid ${colors.textSecondary};
+  border: 1px solid ${colors.textSecondary};
   border-radius: 6px;
   width: 100%;
   line-height: 50px;
@@ -120,4 +133,28 @@ export const ErrorMessage = styled(ErrorMessageFormik)`
     font-size: 14px;
     color: ${colors.primary};
     padding-top: 8px;
+`
+
+export const Label = styled.label`
+  font-size: 16px;
+  font-family: ${fonts.primary};
+  display: inline-block;
+  margin-bottom: 6px;
+`
+
+export const ResetPassBackground = styled.div`
+  background-color: ${colors.bgSecondary};
+  height:max-content;
+  padding: 20px 16px;
+  font-family: ${fonts.primary};
+`
+
+export const ResetPassTitle = styled.h3`
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 16px;
+`
+
+export const ResetPassSubtitle = styled.p`
+  font-size: 14px;
 `

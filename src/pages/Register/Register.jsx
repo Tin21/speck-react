@@ -157,7 +157,7 @@ const Register = () => {
                 <Option value="4">4th faculty year</Option>
                 <Option value="5">5th faculty year</Option>
               </Select>
-              <ErrorMessage component={"div"} name="zeplinUsername" />
+              <ErrorMessage component={"div"} name="activeFacultyYear" />
             </FormRow>
 
             <FormRow>

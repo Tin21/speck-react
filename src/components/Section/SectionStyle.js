@@ -51,6 +51,7 @@ export const SectionTitleInner = styled.div`
         max-width: 1280px;
         display: flex;
         justify-content: space-between;
+        align-content: center;
 `
 
 export const SectionSubtitle = styled.p`
@@ -61,9 +62,6 @@ export const SectionSubtitle = styled.p`
     font-size: 16px;
     margin-bottom: 48px;
 
-    ${props => props.secondarySubtitle && `
-        text-align: left;
-    `}
 `
 
 
