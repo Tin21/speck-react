@@ -53,6 +53,16 @@ const Header = () => {
                 </HamburgerMenuItem>
               </HamburgerNavLink>
 
+              <HamburgerNavLink to="/profile">
+                <HamburgerMenuItem
+                  onClick={() => {
+                    changeState();
+                  }}
+                >
+                  Profile
+                </HamburgerMenuItem>
+              </HamburgerNavLink>
+
               <HamburgerNavLink to="/sign-in">
                 <HamburgerMenuItem
                   onClick={() => {
