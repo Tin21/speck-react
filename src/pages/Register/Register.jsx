@@ -10,9 +10,13 @@ import {
   Option,
   Select,
   Button,
+  FormSuccessMessage,
 } from "../../utils/styles/generalStyles";
+import { useState } from "react";
+import { registerUser } from "../../api/users";
 
 const Register = () => {
+  const [successMessage, setSuccessMessage] = useState(null);
   return (
     <Section title="Register">
       <Formik
@@ -49,28 +53,52 @@ const Register = () => {
           isAdmin: false,
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            const data = {
-              first_name: values.firstName,
-              last_name: values.lastName,
-              email: values.email,
-              password: values.password,
-              github_username: values.githubUsername,
-              zeplin_username: values.zeplinUsername,
-              active_faculty_year:
-                parseInt(values.activeFacultyYear) === 0
-                  ? null
-                  : parseInt(values.activeFacultyYear),
-              is_admin: false,
-            };
-            alert(JSON.stringify(data, null, 2));
-            setSubmitting(false);
-            resetForm();
-          }, 1000);
+          const data = {
+            first_name: values.firstName,
+            last_name: values.lastName,
+            email: values.email,
+            password: values.password,
+            github_username: values.githubUsername,
+            zeplin_username: values.zeplinUsername,
+            active_faculty_year:
+              parseInt(values.activeFacultyYear) === 0
+                ? null
+                : parseInt(values.activeFacultyYear),
+            is_admin: false,
+          };
+
+          registerUser(data)
+            .then((response) => {
+              resetForm();
+              setSuccessMessage({
+                error: false,
+                message: "User is registered successfuly",
+              });
+              setTimeout(() => {
+                setSuccessMessage(null);
+              }, 3000);
+            })
+            .catch((response) => {
+              setSuccessMessage({
+                error: true,
+                message: "There was an error!",
+              });
+            })
+            .finally(() => {
+              setSubmitting(false);
+            });
         }}
       >
         {(formik) => (
           <Form>
+            {successMessage && (
+              <FormRow>
+                <FormSuccessMessage isError={successMessage.error}>
+                  {successMessage.message}
+                </FormSuccessMessage>
+              </FormRow>
+            )}
+
             <FormRow>
               <Field
                 type="text"
