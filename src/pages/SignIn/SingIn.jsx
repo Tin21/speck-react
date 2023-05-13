@@ -13,8 +13,33 @@ import {
 import { loginUser, getUsers } from "../../api/users";
 import { useState } from "react";
 
-const SingIn = () => {
+const SingIn = ({ setUser }) => {
   const [successMessage, setSuccessMessage] = useState(null);
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const reponse = await loginUser(values);
+      const users = await getUsers(reponse.access_token);
+      const user = users.data.find((user) => user.email === values.email);
+      setUser(user);
+      setSuccessMessage({
+        error: false,
+        message: `User ${user.first_name} ${user.last_name} is logged succesfully`,
+      });
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+      localStorage.setItem("jwt_token", reponse.access_token);
+      resetForm();
+    } catch (error) {
+      setSuccessMessage({
+        error: true,
+        message: "User is not logged successfuly!",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Section title="Sign in">
@@ -29,29 +54,7 @@ const SingIn = () => {
             .min(8, "Password must be at least 8 characters long")
             .required("Password is required"),
         })}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
-          try {
-            const reponse = await loginUser(values);
-            const users = await getUsers(reponse.access_token);
-            const user = users.data.find((user) => user.email === values.email);
-            setSuccessMessage({
-              error: false,
-              message: `User ${user.first_name} ${user.last_name} is logged succesfully`,
-            });
-            setTimeout(() => {
-              setSuccessMessage(null);
-            }, 3000);
-            localStorage.setItem("jwt_token", reponse.access_token);
-            resetForm();
-          } catch (error) {
-            setSuccessMessage({
-              error: true,
-              message: "User is not logged successfuly!",
-            });
-          } finally {
-            setSubmitting(false);
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         {(formik) => (
           <Form>
@@ -71,7 +74,6 @@ const SingIn = () => {
               />
               <ErrorMessage component={"div"} name="email" />
             </FormRow>
-
             <FormRow>
               <Field
                 type="password"
@@ -92,5 +94,4 @@ const SingIn = () => {
     </Section>
   );
 };
-
 export default SingIn;

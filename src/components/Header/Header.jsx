@@ -14,13 +14,20 @@ import { Button } from "../../utils/styles/generalStyles";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const Header = () => {
+const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const [active, setActive] = useState(false);
 
   const changeState = () => {
     setActive(!active);
+  };
+
+  const logoutUser = () => {
+    localStorage.clear();
+    setUser(null);
+    setIsLoggedIn(false);
+    console.log("Header", user, isLoggedIn);
   };
 
   return (
@@ -90,9 +97,21 @@ const Header = () => {
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
           <HeaderLink to={"/profile"}>Profile</HeaderLink>
-          <Button isOutline onClick={() => navigate("/sign-in")}>
-            Sign In
-          </Button>
+          {!isLoggedIn && (
+            <Button isOutline onClick={() => navigate("/sign-in")}>
+              Sign In
+            </Button>
+          )}
+          {isLoggedIn && (
+            <Button
+              isOutline
+              onClick={() => {
+                logoutUser();
+              }}
+            >
+              Log out
+            </Button>
+          )}
           <Button onClick={() => navigate("/register")}>Register</Button>
         </HeaderNav>
       </HeaderInner>
