@@ -73,7 +73,8 @@ export const HeaderNav = styled.nav`
 `;
 
 export const HamburgerMenuInner = styled.div`
-    height: 380px;
+    /* height: 380px; */
+    height: max-content;
     width: 200px;
     position: absolute;
     font-weight: 700;
@@ -87,7 +88,6 @@ export const HamburgerMenuInner = styled.div`
     border-bottom-left-radius: 10px;
 
     @media screen and (${breakpoints.tabletLarge}) {
-      height: 425px;
       width: 240px;
       font-weight: 800;
     }

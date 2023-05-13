@@ -17,14 +17,7 @@ function App() {
   user && localStorage.setItem("is_admin", user.is_admin);
 
   useEffect(() => {
-    console.log("user ulogiran:", isLoggedIn);
-    console.log("je admin:", isAdmin);
-  }, []);
-
-  useEffect(() => {
     setIsLoggedIn(localStorage.getItem("jwt_token") ? true : false);
-    console.log("user ulogiran:", isLoggedIn);
-    user && console.log("je admin iz usera:", user.is_admin);
   }, [user]);
 
   return (

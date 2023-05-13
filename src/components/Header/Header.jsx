@@ -12,12 +12,24 @@ import {
 } from "./HeaderStyle";
 import { Button } from "../../utils/styles/generalStyles";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const [active, setActive] = useState(false);
+  const [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+    //u App.jsx nisam uspio namjestit isAdmin osim prvotne vrijednosti iz Local Storage-a, pa umjesto toga koristim user.id_admin ako user postoji
+    if (user) setAdmin(user.is_admin);
+    else setAdmin(isAdmin);
+  }, []);
+
+  useEffect(() => {
+    if (user) setAdmin(user.is_admin);
+    else setAdmin(isAdmin);
+  }, [user]);
 
   const changeState = () => {
     setActive(!active);
@@ -27,7 +39,6 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
     localStorage.clear();
     setUser(null);
     setIsLoggedIn(false);
-    console.log("Header", user, isLoggedIn);
   };
 
   return (
@@ -60,15 +71,17 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
                 </HamburgerMenuItem>
               </HamburgerNavLink>
 
-              <HamburgerNavLink to="/profile">
-                <HamburgerMenuItem
-                  onClick={() => {
-                    changeState();
-                  }}
-                >
-                  Profile
-                </HamburgerMenuItem>
-              </HamburgerNavLink>
+              {admin && isLoggedIn && (
+                <HamburgerNavLink to="/profile">
+                  <HamburgerMenuItem
+                    onClick={() => {
+                      changeState();
+                    }}
+                  >
+                    Profile
+                  </HamburgerMenuItem>
+                </HamburgerNavLink>
+              )}
 
               {!isLoggedIn && (
                 <HamburgerNavLink to="/sign-in">
@@ -93,15 +106,17 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
                 </HamburgerMenuItem>
               )}
 
-              <HamburgerNavLink to="/register">
-                <HamburgerMenuItem
-                  onClick={() => {
-                    changeState();
-                  }}
-                >
-                  Register
-                </HamburgerMenuItem>
-              </HamburgerNavLink>
+              {!isLoggedIn && (
+                <HamburgerNavLink to="/register">
+                  <HamburgerMenuItem
+                    onClick={() => {
+                      changeState();
+                    }}
+                  >
+                    Register
+                  </HamburgerMenuItem>
+                </HamburgerNavLink>
+              )}
             </HamburgerMenuInner>
           </>
         )}
@@ -109,7 +124,9 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
         <HeaderNav>
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
-          <HeaderLink to={"/profile"}>Profile</HeaderLink>
+          {admin && isLoggedIn && (
+            <HeaderLink to={"/profile"}>Profile</HeaderLink>
+          )}
           {!isLoggedIn && (
             <Button isOutline onClick={() => navigate("/sign-in")}>
               Sign In
@@ -125,7 +142,11 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
               Log out
             </Button>
           )}
-          <Button onClick={() => navigate("/register")}>Register</Button>
+          {!isLoggedIn && (
+            <Button isRegister onClick={() => navigate("/register")}>
+              Register
+            </Button>
+          )}
         </HeaderNav>
       </HeaderInner>
     </HeaderWrapper>

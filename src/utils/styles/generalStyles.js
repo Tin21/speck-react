@@ -24,7 +24,6 @@ export const Button = styled.button`
         background-color: ${colors.secondary};
         border: 1px solid ${colors.primary};
         color: ${colors.primary};
-        margin-right: 32px;
     `}
 
     ${props => props.isEdit && `
@@ -36,6 +35,10 @@ export const Button = styled.button`
         @media screen and (${breakpoints.desktop}) {
           height: 44px;
         }
+    `}
+
+    ${props => props.isRegister && `
+        margin-left: 32px;
     `}
   
   &:Hover {
