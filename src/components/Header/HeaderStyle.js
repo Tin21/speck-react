@@ -41,6 +41,7 @@ export const Hamburger = styled (HamburgerIcon)`
     }
 `;
 
+
 export const LogoImg = styled (Logo)`
   path {
     fill: ${colors.primary};

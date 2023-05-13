@@ -70,15 +70,28 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
                 </HamburgerMenuItem>
               </HamburgerNavLink>
 
-              <HamburgerNavLink to="/sign-in">
+              {!isLoggedIn && (
+                <HamburgerNavLink to="/sign-in">
+                  <HamburgerMenuItem
+                    onClick={() => {
+                      changeState();
+                    }}
+                  >
+                    Sign In
+                  </HamburgerMenuItem>
+                </HamburgerNavLink>
+              )}
+
+              {isLoggedIn && (
                 <HamburgerMenuItem
                   onClick={() => {
                     changeState();
+                    logoutUser();
                   }}
                 >
-                  Sign In
+                  Sign out
                 </HamburgerMenuItem>
-              </HamburgerNavLink>
+              )}
 
               <HamburgerNavLink to="/register">
                 <HamburgerMenuItem
