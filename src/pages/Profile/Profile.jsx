@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, Navigate } from "react-router-dom";
 import {
   Section,
   SectionSubtitle,
@@ -24,7 +25,7 @@ import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const Profile = () => {
+const Profile = ({ isAdmin }) => {
   const [editing, setEditing] = useState(false);
 
   const [data, setData] = useState({

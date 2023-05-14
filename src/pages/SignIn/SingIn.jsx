@@ -26,9 +26,7 @@ const SingIn = ({ setUser }) => {
         error: false,
         message: `User ${user.first_name} ${user.last_name} is logged succesfully`,
       });
-      setTimeout(() => {
-        setSuccessMessage(null);
-      }, 3000);
+
       localStorage.setItem("jwt_token", reponse.access_token);
       resetForm();
     } catch (error) {
@@ -38,6 +36,9 @@ const SingIn = ({ setUser }) => {
       });
     } finally {
       setSubmitting(false);
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 2000);
     }
   };
 

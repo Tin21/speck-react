@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import {
   Header as HeaderWrapper,
   HeaderInner,
@@ -18,17 +18,11 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const [active, setActive] = useState(false);
-  const [admin, setAdmin] = useState(null);
+  const [admin, setAdmin] = useState(isAdmin);
 
+  //u App.jsx nisam uspio namjestit isAdmin osim prvotne vrijednosti iz Local Storage-a, pa umjesto toga koristim user.id_admin ako user postoji
   useEffect(() => {
-    //u App.jsx nisam uspio namjestit isAdmin osim prvotne vrijednosti iz Local Storage-a, pa umjesto toga koristim user.id_admin ako user postoji
-    if (user) setAdmin(user.is_admin);
-    else setAdmin(isAdmin);
-  }, []);
-
-  useEffect(() => {
-    if (user) setAdmin(user.is_admin);
-    else setAdmin(isAdmin);
+    user && setAdmin(user.is_admin);
   }, [user]);
 
   const changeState = () => {
