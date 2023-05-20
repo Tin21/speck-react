@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Section from "../../components/Section/Section";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -12,9 +12,11 @@ import {
 } from "../../utils/styles/generalStyles";
 import { loginUser, getUsers } from "../../api/users";
 import { useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-const SingIn = ({ setUser }) => {
+const SingIn = (props) => {
   const [successMessage, setSuccessMessage] = useState(null);
+  const { user, setUser } = useContext(AuthContext);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {

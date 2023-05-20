@@ -12,17 +12,20 @@ import {
 } from "./HeaderStyle";
 import { Button } from "../../utils/styles/generalStyles";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { ProtectedRoute } from "../../api/ProtectedRoute/ProtectedRoute";
 
-const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
+const Header = (props) => {
   const navigate = useNavigate();
-
+  const { isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, user, setUser } =
+    useContext(AuthContext);
   const [active, setActive] = useState(false);
-  const [admin, setAdmin] = useState(isAdmin);
 
-  //u App.jsx nisam uspio namjestit isAdmin osim prvotne vrijednosti iz Local Storage-a, pa umjesto toga koristim user.id_admin ako user postoji
   useEffect(() => {
-    user && setAdmin(user.is_admin);
+    user && setIsAdmin(user.is_admin);
+    user && localStorage.setItem("is_admin", user.is_admin);
+    user && setIsLoggedIn(true);
   }, [user]);
 
   const changeState = () => {
@@ -65,7 +68,7 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
                 </HamburgerMenuItem>
               </HamburgerNavLink>
 
-              {admin && isLoggedIn && (
+              {isAdmin && isLoggedIn && (
                 <HamburgerNavLink to="/profile">
                   <HamburgerMenuItem
                     onClick={() => {
@@ -118,8 +121,10 @@ const Header = ({ user, setUser, isAdmin, isLoggedIn, setIsLoggedIn }) => {
         <HeaderNav>
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
-          {admin && isLoggedIn && (
-            <HeaderLink to={"/profile"}>Profile</HeaderLink>
+          {isAdmin && isLoggedIn && (
+            <ProtectedRoute>
+              <HeaderLink to={"/profile"}>Profile</HeaderLink>
+            </ProtectedRoute>
           )}
           {!isLoggedIn && (
             <Button isOutline onClick={() => navigate("/sign-in")}>

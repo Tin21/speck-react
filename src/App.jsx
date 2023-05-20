@@ -6,58 +6,48 @@ import CoursePage from "./pages/CoursePage";
 import SignIn from "./pages/SignIn/SingIn";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
-import { useState, useEffect } from "react";
-import { bool } from "yup";
-
-const ProtectedRoute = ({ admin, redirectPath = "/", children }) => {
-  if (!admin) {
-    return <Navigate to={redirectPath} replace />;
-  }
-
-  return children ? children : <Outlet />;
-};
+import { useState, useEffect, createContext, useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+import { ProtectedRoute } from "./api/ProtectedRoute/ProtectedRoute";
 
 function App() {
+  const { isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin } =
+    useContext(AuthContext);
   const [user, setUser] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(localStorage.getItem("is_admin"));
-  const [isLoggedIn, setIsLoggedIn] = useState(
+  /*  const [isAdmin, setIsAdmin] = useState(localStorage.getItem("is_admin"));
+   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("jwt_token") ? true : false
-  );
+  ); */
+
+  useEffect(() => {
+    if (localStorage.length !== 0) {
+      setIsAdmin(localStorage.getItem("is_admin"));
+      setIsLoggedIn(true);
+      console.log("isAdmin: ", isAdmin);
+      console.log("isLogged: ", isLoggedIn);
+    }
+  }, []);
 
   user && localStorage.setItem("is_admin", user.is_admin);
+
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("jwt_token") ? true : false);
   }, [user]);
 
   return (
     <>
-      <Header
-        user={user}
-        setUser={setUser}
-        isAdmin={isAdmin}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-      />
+      <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CoursePage />} />
-          <Route
-            path="/sign-in"
-            element={
-              <SignIn
-                setUser={setUser}
-                user={user}
-                setIsLoggedIn={setIsLoggedIn}
-              />
-            }
-          />
+          <Route path="/sign-in" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/profile"
             element={
-              <ProtectedRoute admin={isLoggedIn}>
+              <ProtectedRoute>
                 <Profile />
               </ProtectedRoute>
             }
