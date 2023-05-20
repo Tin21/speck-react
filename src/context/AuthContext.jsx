@@ -4,7 +4,9 @@ const AuthContext = createContext();
 
 const AuthProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(
+    localStorage.getItem("id_admin") ? localStorage.getItem("id_admin") : null
+  );
   const [user, setUser] = useState(null);
 
   return (

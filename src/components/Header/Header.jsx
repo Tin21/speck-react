@@ -14,7 +14,6 @@ import { Button } from "../../utils/styles/generalStyles";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { ProtectedRoute } from "../../api/ProtectedRoute/ProtectedRoute";
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -122,9 +121,7 @@ const Header = (props) => {
           <HeaderLink to={"/"}>Home</HeaderLink>
           <HeaderLink to={"/courses"}>Courses</HeaderLink>
           {isAdmin && isLoggedIn && (
-            <ProtectedRoute>
-              <HeaderLink to={"/profile"}>Profile</HeaderLink>
-            </ProtectedRoute>
+            <HeaderLink to={"/profile"}>Profile</HeaderLink>
           )}
           {!isLoggedIn && (
             <Button isOutline onClick={() => navigate("/sign-in")}>

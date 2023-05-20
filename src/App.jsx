@@ -1,30 +1,24 @@
 import Header from "./components/Header/Header";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import CoursePage from "./pages/CoursePage";
 import SignIn from "./pages/SignIn/SingIn";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { ProtectedRoute } from "./api/ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const { isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin } =
-    useContext(AuthContext);
+  const { setIsLoggedIn, setIsAdmin } = useContext(AuthContext);
   const [user, setUser] = useState(null);
-  /*  const [isAdmin, setIsAdmin] = useState(localStorage.getItem("is_admin"));
-   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("jwt_token") ? true : false
-  ); */
 
   useEffect(() => {
     if (localStorage.length !== 0) {
-      setIsAdmin(localStorage.getItem("is_admin"));
+      if (localStorage.getItem("is_admin") === true)
+        setIsAdmin(localStorage.getItem("is_admin"));
       setIsLoggedIn(true);
-      console.log("isAdmin: ", isAdmin);
-      console.log("isLogged: ", isLoggedIn);
     }
   }, []);
 

@@ -16,7 +16,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const SingIn = (props) => {
   const [successMessage, setSuccessMessage] = useState(null);
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, setIsAdmin } = useContext(AuthContext);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
@@ -38,6 +38,7 @@ const SingIn = (props) => {
       });
     } finally {
       setSubmitting(false);
+      setIsAdmin(user.is_admin);
       setTimeout(() => {
         setSuccessMessage(null);
       }, 2000);
